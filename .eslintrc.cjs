@@ -1,21 +1,44 @@
-module.exports = {
-  root: true,
-  env: { browser: true, es2020: true },
-  extends: [
-    'eslint:recommended',
-    'plugin:react/recommended',
-    'plugin:react/jsx-runtime',
-    'plugin:react-hooks/recommended',
-  ],
-  ignorePatterns: ['dist', '.eslintrc.cjs'],
-  parserOptions: { ecmaVersion: 'latest', sourceType: 'module' },
-  settings: { react: { version: '18.2' } },
-  plugins: ['react-refresh'],
-  rules: {
-    'react/jsx-no-target-blank': 'off',
-    'react-refresh/only-export-components': [
-      'warn',
-      { allowConstantExport: true },
-    ],
+{
+  "env": {
+      "browser": true,
+      "es2021": true,
   },
+  "extends": [
+      "standard",
+      "plugin:react/recommended",
+      "plugin:react-hooks/recommended"
+     // "plugin:prettier/recommended"
+  ],
+  "parserOptions": {
+      "ecmaVersion": "latest",
+      "sourceType": "module"
+  },
+  "plugins": [
+      "react",
+      "eslint-plugin-import-helpers",
+      "react-hooks"
+   //   "prettier"
+  ],
+  "rules": {
+     // "prettier/prettier": "error",
+     "camelcase":"off",
+      "react-hooks/rules-of-hooks": "error",
+      "react-hooks/exhaustive-deps": "warn",
+      "no-unused-vars": "warn",
+      "import-helpers/order-imports": [
+          "warn",
+          { // example configuration
+              "newlinesBetween": "always",
+              "groups": [
+                  "module",
+                  "/^@shared/",
+                  ["parent", "sibling", "index"]
+              ],
+              "alphabetize": { "order": "asc", "ignoreCase": true }
+          }
+      ]
+  }
+
 }
+  
+  
