@@ -1,6 +1,7 @@
 import React from 'react'
-import { Button, Container, ContainerLeft, ContainerRight, Form, InputContainer, Title } from './style'
+import { Container, ContainerLeft, ContainerRight, Form, InputContainer, Title } from './style'
 import Logo from "../../assets/Logo.svg"
+import { Button } from '../../components/Button'
 
 export function Login() {
   return (
