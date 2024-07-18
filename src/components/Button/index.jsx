@@ -2,9 +2,9 @@ import { ContainerButton } from "./style"
 import PropTypes from "prop-types"
 import React from "react"
 
-export function Button({ children }) {
+export function Button({ children, ...props }) {
   return (
-    <ContainerButton>
+    <ContainerButton {...props}>
       {children}
     </ContainerButton>
   )
