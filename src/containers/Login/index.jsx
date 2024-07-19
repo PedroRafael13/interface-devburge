@@ -3,9 +3,12 @@ import { Container, ContainerLeft, ContainerRight, Form, InputContainer, Title }
 import Logo from "../../assets/Logo.svg"
 import { Button } from '../../components/Button'
 
+import { toast } from 'react-toastify'
+
 import { useForm } from "react-hook-form"
 import { yupResolver } from "@hookform/resolvers/yup"
 import * as yup from "yup"
+import { api } from '../../services/api'
 
 export function Login() {
   const schema = yup
@@ -23,7 +26,22 @@ export function Login() {
     resolver: yupResolver(schema),
   })
 
-  const onSubmit = (data) => console.log(data)
+  const onSubmit = async (data) => {
+
+
+    const response = await toast.promise(
+      api.post('/session', {
+        email: data.email,
+        password: data.password,
+      }), {
+      pending: 'Verificando seus dados',
+      success: 'Tudo certo, seja bem-vindo 👌',
+      error: 'alguma coisa deu errado, verifique seus dados 🤯'
+    }
+    )
+
+    console.log(response)
+  }
 
   return (
     <Container>
