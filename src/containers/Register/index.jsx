@@ -2,9 +2,9 @@ import React from 'react'
 import { Container, ContainerLeft, ContainerRight, Form, InputContainer, Title } from './style'
 import Logo from "../../assets/Logo.svg"
 import { Button } from '../../components/Button'
-import { useNavigate } from 'react-router-dom'
 
 import { toast } from 'react-toastify'
+import { useNavigate } from 'react-router-dom'
 
 import { useForm } from "react-hook-form"
 import { yupResolver } from "@hookform/resolvers/yup"
@@ -12,13 +12,15 @@ import * as yup from "yup"
 import { api } from '../../services/api'
 import { Link } from 'react-router-dom'
 
-export function Login() {
+export function Register() {
   const navigation = useNavigate()
 
   const schema = yup
     .object({
+      name: yup.string().required('O nome é obrigatorio'),
       email: yup.string().email('Coloque seu Email').required('O Email é obrigatorio'),
       password: yup.string().min(6, 'A senha precisa de 6 caratrias').required('A senha é obrigatoria'),
+      confirPassword: yup.string().oneOf([yup.ref('password')], 'As senhas devem iguais')
     })
     .required()
 
@@ -31,25 +33,30 @@ export function Login() {
   })
 
   const onSubmit = async (data) => {
-
-
-    const response = await toast.promise(
-      api.post('/session', {
+    try {
+      const { status } = await api.post('/users', {
+        name: data.name,
         email: data.email,
         password: data.password,
-      }), {
-      pending: 'Verificando seus dados',
-      success: {
-        render() {
-          setTimeout(() => {
-            navigation('/')
-          }, 2000)
+      }, {
+        validateStatus: () => true
+      })
 
-          return 'Tudo certo, seja bem-vindo 👌'
-        },
-        error: 'alguma coisa deu errado, verifique seus dados 🤯'
-      },
-    })
+      if (status === 200 || status === 201) {
+        setTimeout(() => {
+          navigation('/login')
+        }, 2000)
+
+        toast.success("Conta realizada com sucesso!")
+
+      } else if (status === 409 || status === 400) {
+        toast.error("O email já está existe! faça o seu login")
+      } else {
+        throw Error()
+      }
+    } catch (errror) {
+      toast.error("O sistema caiu, tente novamente, mais tarde")
+    }
 
     console.log(response)
   }
@@ -62,12 +69,17 @@ export function Login() {
 
       <ContainerRight>
         <Title>
-          Olá, seja bem vindo ao <span>Dev Burguer!</span>
+          Criar Conta
           <br />
-          Acesse com seu <span>Login e senha.</span>
         </Title>
 
         <Form onSubmit={handleSubmit(onSubmit)}>
+          <InputContainer>
+            <label>Nome</label>
+            <input type="text" {...register("name")} />
+            <p>{errors?.name?.message}</p>
+          </InputContainer>
+
           <InputContainer>
             <label>Email</label>
             <input type="email" {...register("email")} />
@@ -79,9 +91,15 @@ export function Login() {
             <input type="password" {...register("password")} />
             <p>{errors?.password?.message}</p>
           </InputContainer>
-          <Button type="submit">Entrar</Button>
+
+          <InputContainer>
+            <label>Confirmar senha</label>
+            <input type="password" {...register("confirPassword")} />
+            <p>{errors?.confirPassword?.message}</p>
+          </InputContainer>
+          <Button type="submit">Criar Conta</Button>
         </Form>
-        <p>Não possui conta? <Link to='/cadastro'>Clique aqui.</Link></p>
+        <p>possui conta? <Link to='/login'>Clique aqui.</Link></p>
       </ContainerRight>
     </Container>
   )
