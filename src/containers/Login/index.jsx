@@ -15,12 +15,10 @@ import { Link } from 'react-router-dom'
 export function Login() {
   const navigation = useNavigate()
 
-  const schema = yup
-    .object({
-      email: yup.string().email('Coloque seu Email').required('O Email é obrigatorio'),
-      password: yup.string().min(6, 'A senha precisa de 6 caratrias').required('A senha é obrigatoria'),
-    })
-    .required()
+  const schema = yup.object({
+    email: yup.string().email('Coloque seu Email').required('O Email é obrigatorio'),
+    password: yup.string().min(6, 'A senha precisa de 6 caratrias').required('A senha é obrigatoria'),
+  }).required()
 
   const {
     register,
@@ -31,27 +29,29 @@ export function Login() {
   })
 
   const onSubmit = async (data) => {
-
-
-    const response = await toast.promise(
-      api.post('/session', {
+    try {
+      const { status } = await api.post('session', {
         email: data.email,
-        password: data.password,
-      }), {
-      pending: 'Verificando seus dados',
-      success: {
-        render() {
-          setTimeout(() => {
-            navigation('/')
-          }, 2000)
-
-          return 'Tudo certo, seja bem-vindo 👌'
-        },
-        error: 'alguma coisa deu errado, verifique seus dados 🤯'
+        password: data.password
       },
-    })
+        { validateStatus: () => true }
+      )
 
-    console.log(response)
+      if (status === 201 || status === 200) {
+        toast.success('Login efetuado com sucesso')
+
+        setTimeout(() => {
+          navigation('/')
+        }, 2000)
+      } else if (status === 401) {
+        toast.error('Verifique seu e-mail ou senha!')
+      } else {
+        throw new Error()
+      }
+    } catch (err) {
+      toast.error('Falha no sistema! Tente novamente')
+      console.log(err)
+    }
   }
 
   return (
