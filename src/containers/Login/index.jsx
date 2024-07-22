@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom'
 
 import { toast } from 'react-toastify'
 
+import { userUser } from '../../hooks/UserContext'
 import { useForm } from "react-hook-form"
 import { yupResolver } from "@hookform/resolvers/yup"
 import * as yup from "yup"
@@ -13,6 +14,8 @@ import { api } from '../../services/api'
 import { Link } from 'react-router-dom'
 
 export function Login() {
+  const { putUserData, userData } = userUser()
+
   const navigation = useNavigate()
 
   const schema = yup.object({
@@ -30,7 +33,7 @@ export function Login() {
 
   const onSubmit = async (data) => {
     try {
-      const { status } = await api.post('session', {
+      const { status, data } = await api.post('session', {
         email: data.email,
         password: data.password
       },
@@ -52,6 +55,9 @@ export function Login() {
       toast.error('Falha no sistema! Tente novamente')
       console.log(err)
     }
+
+    putUserData(data)
+    console.log(userData)
   }
 
   return (
