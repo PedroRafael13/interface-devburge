@@ -23,5 +23,5 @@ ReactDOM.createRoot(document.getElementById('root')).render(
       theme="light"
       transition:Flip
     />
-  </React.StrictMode>,
+  </React.StrictMode>
 )

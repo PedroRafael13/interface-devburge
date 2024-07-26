@@ -14,7 +14,7 @@ import { api } from '../../services/api'
 import { Link } from 'react-router-dom'
 
 export function Login() {
-  const { putUserData, userData } = userUser()
+  const { putUserData } = userUser()
 
   const navigation = useNavigate()
 
@@ -31,11 +31,11 @@ export function Login() {
     resolver: yupResolver(schema),
   })
 
-  const onSubmit = async (data) => {
+  const onSubmit = async (elements) => {
     try {
       const { status, data } = await api.post('session', {
-        email: data.email,
-        password: data.password
+        email: elements.email,
+        password: elements.password
       },
         { validateStatus: () => true }
       )
@@ -51,13 +51,12 @@ export function Login() {
       } else {
         throw new Error()
       }
+
+      putUserData(data)
     } catch (err) {
       toast.error('Falha no sistema! Tente novamente')
       console.log(err)
     }
-
-    putUserData(data)
-    console.log(userData)
   }
 
   return (
