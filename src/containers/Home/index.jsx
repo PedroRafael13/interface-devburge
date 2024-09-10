@@ -1,6 +1,6 @@
 import React from "react"
 import { Banner, Container, Content } from "./style"
-import { Category } from "../../components/CategoryCarousel/style"
+import { Category } from "../../components/CategoryCarousel"
 
 export function Home() {
   return (

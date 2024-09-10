@@ -1,18 +1,50 @@
-import React, { useEffect, useState } from 'react'
-import { api } from "../../services/api"
+import styled from "styled-components";
 
-export function Category() {
-  const [categories, setCategories] = useState([])
+export const Container = styled.div`
+  .carousel-items{
+    padding-right: 48px;
+  }
+`
 
-  useEffect(() => {
-    async function loadCategory() {
-      const response = get.use('/categories')
-    }
+export const Title = styled.h2`
+  font-size: 32px;
+  font-weight: 800;
+  color: #9758a6;
+  padding-bottom: 18px;
+  position: relative;
+  text-align: center;
 
-    loadCategory()
-  }, [])
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    width: 56px;
+    height: 4px;
+    background-color:#9758a6;
+    left: calc(50% - 25px);
+  }
+`
 
-  return (
-    <div></div>
-  )
-}
+export const ContainerItems = styled.div`
+  background: url('${props => props.imageUrl}');
+  background-position: center;
+  background-size: cover;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px 10px;
+  width: 100%;
+  height: 200px;
+
+  p {
+    color :#ffff;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 10px 30px;
+    border-radius: 30px;
+    font-size: 32px;
+    font-weight: bold;
+    margin-top: 50px;
+  }
+
+`
