@@ -30,31 +30,28 @@ export function Login() {
   })
 
   const onSubmit = async (elements) => {
-    try {
-      const { status, data } = await api.post('session', {
-        email: elements.email,
-        password: elements.password
-      },
-        { validateStatus: () => true }
+    const { data: { token } } =
+      await toast.promise(
+        api.post("/session", {
+          email: elements.email,
+          password: elements.password,
+        }),
+        {
+          pending: "verificando seus dados",
+          success: {
+            render() {
+              setTimeout(() => {
+                navigation('/')
+              }, 2000)
+              return "seja Bem-vindo"
+            },
+          },
+          error: "Email ou senha Incorretos"
+        },
       )
 
-      if (status === 201 || status === 200) {
-        toast.success('Login efetuado com sucesso')
+    localStorage.setItem('token', token)
 
-        setTimeout(() => {
-          navigation('/')
-        }, 2000)
-      } else if (status === 401) {
-        toast.error('Verifique seu e-mail ou senha!')
-      } else {
-        throw new Error()
-      }
-
-      putUserData(data)
-    } catch (err) {
-      toast.error('Falha no sistema! Tente novamente')
-      console.log(err)
-    }
   }
 
   return (
