@@ -6,10 +6,10 @@ import { CartButton } from "../../components/CartButton"
 export function CardProduct({ product }) {
   return (
     <Container>
-      <CardImage src={product.url} alt="nome-da-pagina" />
+      <CardImage src={product.url} alt="foto-dos-produtos " />
       <div>
         <p>{product.name}</p>
-        <strong>{product.price}</strong>
+        <strong>{product.currencyValue}</strong>
       </div>
       <CartButton></CartButton>
     </Container>
