@@ -2,18 +2,21 @@ import React, { useEffect, useState } from 'react'
 import { api } from "../../services/api"
 import Carousel from 'react-multi-carousel'
 import 'react-multi-carousel/lib/styles.css';
-import { Container, ContainerItems, Title } from './style';
+import { Container, Title } from './style';
+import { CardProduct } from '../CardProduct';
 
-export function Category() {
-  const [categories, setCategories] = useState([])
+export function OffersCarrosuel() {
+  const [offers, setOffers] = useState([])
 
   useEffect(() => {
-    async function loadCategory() {
-      const { data } = await api.get('/categories')
+    async function loadProducts() {
+      const { data } = await api.get('/products')
 
-      setCategories(data)
+      const onlyOffers = data.filter((product) => product.offer)
+      setOffers(onlyOffers)
     }
-    loadCategory()
+
+    loadProducts()
   }, [])
 
   const responsive = {
@@ -37,18 +40,16 @@ export function Category() {
 
   return (
     <Container>
-      <Title>Categorias</Title>
+      <Title>Ofertas do Dia</Title>
 
       <Carousel
         responsive={responsive}
         infinite={true}
-        partialVisbile={false} git
+        partialVisbile={false}
         itemClass='carousel-items'
       >
-        {categories.map(category => (
-          <ContainerItems key={category.id} imageUrl={category.url}>
-            <p>{category.name}</p>
-          </ContainerItems>
+        {offers.map(products => (
+          <CardProduct key={products.id} product={products} />
         ))}
       </Carousel>
     </Container>
