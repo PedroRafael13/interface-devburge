@@ -5,11 +5,12 @@ export const Container = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 20px;
+  gap: 40px;
   padding:20px;
   border-radius: 8px;
   background-color: #ffffff;
   cursor: grab;
+  position: relative;
 
   div{
     width: 100%;
