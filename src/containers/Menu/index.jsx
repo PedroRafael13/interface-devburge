@@ -3,14 +3,29 @@ import { Banner, CategoryButton, CategoryMenu, Container, ProductsContainer } fr
 import { api } from "../../services/api";
 import { formatPrice } from "../../utils/formatPrice";
 import { CardProduct } from "../../components/CardProduct";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 export function Menu() {
   const navigate = useNavigate()
   const [categories, setCategory] = useState([])
   const [products, setProduct] = useState([])
   const [filteredproducts, setFilteredproductsProduct] = useState([])
-  const [activeCategory, setActiveCategory] = useState([])
+
+
+  const { search } = useLocation()
+
+  const queryParams = new URLSearchParams(search)
+
+  const [activeCategory, setActiveCategory] = useState(() => {
+    const categoryId = +queryParams.get('categoria')
+
+    if (categoryId) {
+      return categoryId
+    }
+
+    return 0
+  })
+
 
   useEffect(() => {
     async function loadCategory() {
@@ -47,6 +62,7 @@ export function Menu() {
       setFilteredproductsProduct(newFilteredProducts)
     }
   }, [products, activeCategory])
+
 
   return (
     <Container>
