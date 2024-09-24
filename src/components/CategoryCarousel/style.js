@@ -50,6 +50,5 @@ export const CategoryButton = styled.button`
 
     :hover{
       background-color:#9758a6;
-      color: #ffff;
     }
 `
