@@ -5,16 +5,18 @@ import { Button } from '../../components/Button'
 import { useNavigate } from 'react-router-dom'
 
 import { toast } from 'react-toastify'
-
 import { useForm } from "react-hook-form"
 import { yupResolver } from "@hookform/resolvers/yup"
 import * as yup from "yup"
 import { api } from '../../services/api'
 import { Link } from 'react-router-dom'
+import { UserUser } from '../../hooks/UserContext'
 
 export function Login() {
 
   const navigation = useNavigate()
+
+  const { putUserData } = UserUser()
 
   const schema = yup.object({
     email: yup.string().email('Coloque seu Email').required('O Email é obrigatorio'),
@@ -30,7 +32,7 @@ export function Login() {
   })
 
   const onSubmit = async (elements) => {
-    const { data: { token } } =
+    const { data: userData } =
       await toast.promise(
         api.post("/session", {
           email: elements.email,
@@ -50,7 +52,7 @@ export function Login() {
         },
       )
 
-    localStorage.setItem('token', token)
+    putUserData(userData)
 
   }
 
