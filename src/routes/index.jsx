@@ -5,6 +5,8 @@ import { Login } from '../containers/Login';
 import { Register } from '../containers/Register';
 import { Home } from '../containers/Home';
 import { Menu } from '../containers/Menu';
+import { Header } from '../components/Header';
+
 
 const AnimatedPage = ({ children }) => {
   return (
@@ -39,9 +41,12 @@ export const router = createBrowserRouter([
   {
     path: '/',
     element: (
-      <AnimatedPage>
-        <Home />
-      </AnimatedPage>
+      <>
+        <AnimatedPage>
+          <Header />,
+          <Home />
+        </AnimatedPage>
+      </>
     ),
   },
   {
