@@ -7,6 +7,8 @@ export const Banner = styled.div`
   background-size: cover;
   background-position: center;
   height: 480px;
+  margin-top: -24px;
+
 
   h1{
     font-family: "Road Rage", sans-serif;

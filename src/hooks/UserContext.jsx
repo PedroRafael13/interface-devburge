@@ -20,7 +20,7 @@ export const UserProvider = ({ children }) => {
   useEffect(() => {
     const userInfoLocalStorage = localStorage.getItem('DevBurger:data')
 
-    if (localStorage) {
+    if (userInfoLocalStorage) {
       setUserInfo(JSON.parse(userInfoLocalStorage))
     }
   }, [])

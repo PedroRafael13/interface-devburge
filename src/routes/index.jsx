@@ -52,9 +52,12 @@ export const router = createBrowserRouter([
   {
     path: '/cardapio',
     element: (
-      <AnimatedPage>
-        <Menu />
-      </AnimatedPage>
+      <>
+        <AnimatedPage>
+          <Header />,
+          <Menu />
+        </AnimatedPage>
+      </>
     ),
   },
 ]);

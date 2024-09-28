@@ -14,6 +14,7 @@ export const Container = styled.div`
   ),
   url('${Background}');
   height: 500px;
+  margin-top: -24px;
 `
 
 export const Banner = styled.div`
