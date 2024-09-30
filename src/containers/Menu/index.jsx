@@ -11,7 +11,6 @@ export function Menu() {
   const [products, setProduct] = useState([])
   const [filteredproducts, setFilteredproductsProduct] = useState([])
 
-
   const { search } = useLocation()
 
   const queryParams = new URLSearchParams(search)
@@ -56,7 +55,7 @@ export function Menu() {
       setFilteredproductsProduct(products)
     } else {
       const newFilteredProducts = products.filter(
-        (product) => products.category_id === activeCategory
+        (product) => product.category_id === activeCategory
       )
 
       setFilteredproductsProduct(newFilteredProducts)

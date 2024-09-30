@@ -64,7 +64,7 @@ export function Category() {
             </CategoryButton>
           </ContainerItems>
         ))}
-      </Carousel>
+            </Carousel>
     </Container>
   )
 }
