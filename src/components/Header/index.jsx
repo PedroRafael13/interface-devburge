@@ -15,6 +15,10 @@ export function Header() {
     navigate("/login")
   }
 
+  function userCart() {
+    navigate("/carrinho")
+  }
+
   return (
     <Container>
       <Content>
@@ -37,7 +41,7 @@ export function Header() {
           </Profile>
           <LinkContainer>
             <ShoppingCartSimple color="#333" size={24} />
-            <HeaderLink>Carrinho</HeaderLink>
+            <HeaderLink onClick={userCart} >Carrinho</HeaderLink>
           </LinkContainer>
         </Option>
       </Content>

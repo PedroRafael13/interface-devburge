@@ -6,6 +6,8 @@ import { Register } from '../containers/Register';
 import { Home } from '../containers/Home';
 import { Menu } from '../containers/Menu';
 import { Header } from '../components/Header';
+import { Footer } from '../components/Footer';
+import { Cart } from '../components/Cart';
 
 
 const AnimatedPage = ({ children }) => {
@@ -44,7 +46,8 @@ export const router = createBrowserRouter([
       <>
         <AnimatedPage>
           <Header />,
-          <Home />
+          <Home />,
+          <Footer />
         </AnimatedPage>
       </>
     ),
@@ -56,6 +59,17 @@ export const router = createBrowserRouter([
         <AnimatedPage>
           <Header />,
           <Menu />
+        </AnimatedPage>
+      </>
+    ),
+  },
+  {
+    path: '/carrinho',
+    element: (
+      <>
+        <AnimatedPage>
+          <Header />,
+          <Cart />
         </AnimatedPage>
       </>
     ),
