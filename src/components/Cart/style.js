@@ -9,8 +9,7 @@ export const Container = styled.div`
   rgba(225, 255, 255, 0.5)
   ),
   url('${Background}');
-  height: 100vw;
-  min-height: 100%;
+  min-height: 100vh;
 `
 
 export const Banner = styled.div`
@@ -50,10 +49,10 @@ export const Title = styled.div`
 
 export const Content = styled.div`
   display: grid;
-  grid-template-columns: 1fr 30%;
+  grid-template-columns: 1fr 35%;
   gap: 40px;
   width: 100%;
-  max-width: 1200px;
+  max-width: 1280px;
   padding: 40px;
   margin: 0 auto;
 `

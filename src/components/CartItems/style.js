@@ -36,7 +36,7 @@ export const EmptyCart = styled.p`
 `
 
 export const Trash = styled.img`
-  height: 80px;
+  height: 30px;
   width: 80px;
   cursor: pointer;
 `
