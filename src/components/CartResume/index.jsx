@@ -28,28 +28,30 @@ export function CartResume() {
     const products = cartProducts.map((product) => {
       return { id: product.id, quantity: product.quantity }
     })
+
     try {
-      const { status } = await api.post('/order', { products }, {
+      const { status } = await api.post('/order', {
+        products
+      }, {
         validateStatus: () => true
       })
 
       if (status === 200 || status === 201) {
+        clearCart()
         setTimeout(() => {
           navigation('/')
-          clearCart()
         }, 2000)
 
         toast.success("Pedido realizado com sucesso!")
 
       } else if (status === 409 || status === 400) {
-        toast.error("Falhar ao realizar seu pedido")
+        toast.error("Alguma coisa deu errado!")
       } else {
         throw Error()
       }
     } catch (errror) {
       toast.error("O sistema caiu, tente novamente, mais tarde")
     }
-
   }
 
   return (

@@ -68,9 +68,14 @@ export const CartProvider = ({ children }) => {
     const clientInfoData = localStorage.getItem('devBurger:dataInfo')
 
     if (clientInfoData) {
-      setCartProducts(JSON.parse(clientInfoData))
+      try {
+        setCartProducts(JSON.parse(clientInfoData))
+      } catch (error) {
+        console.error('Erro ao parsear os dados do localStorage:', error)
+      }
     }
   }, [])
+
 
   return (
     <CartContext.Provider value={{

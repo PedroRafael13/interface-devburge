@@ -57,8 +57,6 @@ export function Register() {
     } catch (errror) {
       toast.error("O sistema caiu, tente novamente, mais tarde")
     }
-
-    console.log(response)
   }
 
   return (
