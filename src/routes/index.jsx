@@ -8,6 +8,10 @@ import { Header } from '../components/Header';
 import { Footer } from '../components/Footer';
 import { Cart } from '../components/Cart';
 import { AnimatedPage } from '../components/Animation';
+import { Checkout } from '../containers/Checkout';
+import { CompletePayment } from '../containers/CompletePayment';
+import paths from '../contants/paths'
+import { Admin } from '../containers/Admin';
 
 export const router = createBrowserRouter([
   {
@@ -57,6 +61,66 @@ export const router = createBrowserRouter([
           <Header />,
           <Cart />
         </AnimatedPage>
+      </>
+    ),
+  },
+  {
+    path: '/checkout',
+    element: (
+      <>
+        <AnimatedPage>
+          <Header />,
+          <Checkout />
+        </AnimatedPage>
+      </>
+    ),
+  },
+  {
+    path: '/complete',
+    element: (
+      <>
+        <Header />
+        <CompletePayment />
+      </>
+    ),
+  },
+  {
+    path: paths.Order,
+    element: (
+      <>
+        <Header />
+        <Admin />
+
+      </>
+    ),
+  },
+  {
+    path: paths.Product,
+    element: (
+      <>
+        <Header />
+        <Admin />
+
+      </>
+    ),
+  },
+  {
+    path: paths.EditProduct,
+    element: (
+      <>
+        <Header />
+        <Admin />
+        {/* <Footer /> */}
+      </>
+    ),
+  },
+  {
+    path: paths.NewProduct,
+    element: (
+      <>
+        <Header />
+        <Admin />
+        {/* <Footer /> */}
       </>
     ),
   },

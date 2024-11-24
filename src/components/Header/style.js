@@ -1,89 +1,125 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
-export const Container = styled.div`
-  background-color: #1f1f1f;
-  width: 100%;
-  height: 72px;
-  padding: 0 56px;
-`
-
-export const Content = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-  max-width: 1280px;
-  margin: 0 auto;
-`
-
-export const Navigation = styled.nav`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 72px;
-
-  div{
+// Container principal
+export const Container = styled.header`
+    background: #1F1F1F;
+    color: #fff;
+    font-size: 18px;
     display: flex;
-    justify-content: center;
     align-items: center;
-    gap: 20px;
-  }
+    justify-content: space-between;
+    padding: 0 30px;
 
-  hr{
-    height: 24px;
-    border: 1px solid #625E5E;
-  }
-`
+    img {
+        width: 100px;
+    }
+`;
 
+// Navegação (Links principais)
+export const Navigation = styled.div`
+    display: flex;
+    align-items: center;
+    gap: 50px;
+`;
+
+// Opções (Perfil, Carrinho, Administração)
+export const Options = styled.div`
+    display: flex;
+    align-items: center;
+    gap: 60px;
+`;
+
+// Link do cabeçalho (com estilo ativo)
 export const HeaderLink = styled(Link)`
-  color: ${(props) => props.$isActive ? "#9758a6" : "#fff"};
-  border-bottom: ${(props) => props.$isActive ? '1px solid #9758a6' : 'none'};
-  padding-bottom:5px ;
-  text-decoration: none;
-  font-size: 14px;
-  transition: color 200ms;
+    text-decoration: none;
+    color: #fff;
+    font-weight: 400;
+    padding: 0 30px;
+    border-right: 1px solid #fff;
 
-  &:hover {
-    color :#9758a6;
-  }
-`
+    &:last-child {
+        border: none;
+    }
 
-export const Option = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 48px;
-`
+    &:hover {
+        color: #9758A6;
+    }
+`;
 
+// Estilo do Perfil (imagem e nome)
 export const Profile = styled.div`
-display: flex;
-align-items: center;
-gap: 12px;
-font-size: 14px;
+    display: flex;
+    font-weight: 300;
 
-p{
-  color: #fff;
-  line-height: 90%;
-  font-weight: 300;
-}
+    img {
+        width: 30px;
+        margin-right: 10px;
+    }
+`;
 
-span{
-  font-weight: 700;
-  color: #9758a6;
-}
-`
+// Nome do usuário
+export const ProfileName = styled.span`
+    color: #9758A6;
+    font-weight: 500;
+`;
 
-export const HeaderButton = styled.button`
-  color: #ff3205;
-  text-decoration: none;
-  font-weight: 700;
-  background-color: transparent;
-  border: none;
-`
+// Estilo do botão de logout
+export const Logout = styled(Link)`
+    color: #9E1C00;
+    font-weight: 500;
+    cursor: pointer;
+    text-decoration: none;
+`;
 
-export const LinkContainer = styled.div`
+// Estilo do Carrinho
+export const Cart = styled.div`
     display: flex;
     align-items: center;
-    gap : 10px;
-`
+    position: relative;
+
+    img {
+        width: 40px;
+    }
+`;
+
+// Link para o carrinho
+export const CartLink = styled(Link)`
+    margin-left: 10px;
+    text-decoration: none;
+    color: #fff;
+
+    &:hover {
+        color: #9758A6;
+    }
+`;
+
+// Badge do carrinho (quantidade de produtos)
+export const CartBadge = styled.span`
+    position: absolute;
+    top: -10px;
+    right: 75px;
+    background-color: #ff0000;
+    color: #fff;
+    border-radius: 50%;
+    padding: 4px 10px;
+    font-size: 12px;
+    font-weight: bold;
+`;
+
+// Estilo do botão de administração (para admin)
+export const AdminConfig = styled(Link)`
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #fff;
+
+    &:hover {
+        color: #9758A6;
+    }
+
+    img {
+        width: 40px;
+    }
+`;
