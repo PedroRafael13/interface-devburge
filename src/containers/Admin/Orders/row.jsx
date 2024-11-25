@@ -31,14 +31,19 @@ export const Row = ({ row, setOrders, orders }) => {
 
   async function setNewStatus(id, status) {
     setIsloading(true);
-    await api.put(`order/${id}`, { status });
-    //Atualizando no front end quando altera o status
-    const newOrders = orders.map((order) => {
-      return order._id === id ? { ...order, status } : order;
-    });
-    setOrders(newOrders);
+    try {
+      await api.put(`order/${id}`, { status });
+      //Atualizando no front end quando altera o status
+      const newOrders = orders.map((order) => {
+        return order._id === id ? { ...order, status } : order;
+      });
+      setOrders(newOrders);
 
-    setIsloading(false);
+    } catch (error) {
+      console.error(error)
+    } finally {
+      setIsloading(false);
+    }
   }
 
   return (

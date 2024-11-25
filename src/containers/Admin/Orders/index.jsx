@@ -22,9 +22,9 @@ export const Orders = () => {
 
   useEffect(() => {
     async function loadOrders() {
-      const response = await api.get('/order');
-      setOrders(response.data);
-      setFilteredOrders(response.data);
+      const { data } = await api.get('/order');
+      setOrders(data);
+      setFilteredOrders(data);
     }
     loadOrders();
   }, []);
@@ -33,7 +33,7 @@ export const Orders = () => {
     return {
       name: orders.user.name,
       order: orders._id,
-      date: orders.createdAt,
+      date: formatDate(orders.createdAt),
       status: orders.status,
       product: orders.products,
     };

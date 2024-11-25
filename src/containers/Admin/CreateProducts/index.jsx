@@ -58,7 +58,7 @@ export const CreateProducts = () => {
     productDataFormData.append('name', data.name);
     productDataFormData.append('price', data.price);
     productDataFormData.append('file', data.file[0]);
-    productDataFormData.append('id_category', data.category.id);
+    productDataFormData.append('category_id', data.category.id);
 
     await toast.promise(api.post('/products', productDataFormData), {
       pending: 'Aguarde...',
