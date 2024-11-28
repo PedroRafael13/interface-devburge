@@ -16,7 +16,7 @@ export function CheckoutForm() {
   const [message, setMessage] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async () => {
     e.preventDefault();
     if (!stripe || !elements) {
       console.error('Stripe ou Elements com falha, tente novamente mais tarde');
@@ -56,6 +56,8 @@ export function CheckoutForm() {
         toast.error('Falha ao realizar seu pedido');
       }
     } catch {
+
+
       toast.error('Ops, algo deu errado!');
     }
   };
@@ -82,4 +84,5 @@ export function CheckoutForm() {
       </div>
     </div>
   );
+
 }

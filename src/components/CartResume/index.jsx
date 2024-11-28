@@ -6,7 +6,7 @@ import { useState, useEffect, } from "react";
 import { api } from "../../services/api"
 import { formatPrice } from "../../utils/formatPrice"
 import { Container } from "./style";
-import { useNavigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 
 export function CartResume() {
   const [finalPrice, setFinalPrice] = useState(0)
@@ -26,31 +26,27 @@ export function CartResume() {
 
   const submitOrder = async () => {
     const products = cartProducts.map((product) => {
-      return { id: product.id, quantity: product.quantity }
+      return { id: product.id, quantity: product.quantity, price: product.price }
     })
 
     try {
-      const { status } = await api.post('/order', {
-        products
-      }, {
-        validateStatus: () => true
+      const { data } = await api.post('/create-payment-intent', { products })
+
+      navigation('/checkout', {
+        state: data
       })
-
-      if (status === 200 || status === 201) {
-        clearCart()
-        setTimeout(() => {
-          navigation('/')
-        }, 2000)
-
-        toast.success("Pedido realizado com sucesso!")
-
-      } else if (status === 409 || status === 400) {
-        toast.error("Alguma coisa deu errado!")
-      } else {
-        throw Error()
-      }
-    } catch (errror) {
-      toast.error("O sistema caiu, tente novamente, mais tarde")
+    } catch (err) {
+      toast.error('alguma coisa deu errado', {
+        position: "top-right",
+        autoClose: false,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+        transition: Bounce,
+      });
     }
   }
 
