@@ -10,8 +10,10 @@ export const Checkout = () => {
   } = useLocation()
 
   if (!clientSecret) {
-    return <div>Erro, volte e tente novamente</div>
+    return (<div>Opa, alguma coisa deu errado, tente novamente mais tarde</div>)
   }
+
+  console.log(clientSecret)
 
   return (
     <Elements stripe={stripePromise} options={{ clientSecret }}>

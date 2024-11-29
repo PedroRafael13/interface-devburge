@@ -45,7 +45,6 @@ export function CartResume() {
         draggable: true,
         progress: undefined,
         theme: "dark",
-        transition: Bounce,
       });
     }
   }
