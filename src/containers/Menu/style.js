@@ -56,6 +56,23 @@ export const CategoryMenu = styled.div`
   margin-top: 30px;
 `
 
+export const BackButton = styled(Link)`
+    text-decoration:none;
+    position: fixed;
+    margin-top: 10px;
+    margin: 20px;
+    background-color: #9758a6;
+    color: #fff;
+    font-weight: 200;
+    font-size: 20px;
+    padding: 10px 20px;
+    border-radius: 30px;
+
+    &:hover {
+      background-color: #6f3576;
+    }
+`
+
 export const CategoryButton = styled(Link)`
   text-decoration: none;
   cursor: pointer;

@@ -45,11 +45,9 @@ export const Header = () => {
   return (
     <Container>
       <Navigation>
-        <img src={Logo} alt="logo" />
         <div>
           <HeaderLink to="/">Home</HeaderLink>
-          <HeaderLink to="/menu?categoria=0">Cardápio</HeaderLink>
-          <HeaderLink to="/contato">Contatos</HeaderLink>
+          <HeaderLink to="/cardapio?categoria=0">Cardápio</HeaderLink>
         </div>
       </Navigation>
       <Options>

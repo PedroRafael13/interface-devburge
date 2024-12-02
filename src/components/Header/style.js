@@ -11,9 +11,6 @@ export const Container = styled.header`
     justify-content: space-between;
     padding: 0 30px;
 
-    img {
-        width: 100px;
-    }
 `;
 
 // Navegação (Links principais)
