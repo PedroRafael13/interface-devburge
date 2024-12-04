@@ -40,7 +40,7 @@ export const HeaderLink = styled(Link)`
     }
 
     &:hover {
-        color: #9758A6;
+        color: ${props => props.theme.purple};
     }
 `;
 
@@ -57,7 +57,7 @@ export const Profile = styled.div`
 
 // Nome do usuário
 export const ProfileName = styled.span`
-    color: #9758A6;
+    color: ${props => props.theme.purple};
     font-weight: 500;
 `;
 
@@ -87,7 +87,7 @@ export const CartLink = styled(Link)`
     color: #fff;
 
     &:hover {
-        color: #9758A6;
+        color: ${props => props.theme.purple};
     }
 `;
 
@@ -113,7 +113,7 @@ export const AdminConfig = styled(Link)`
     color: #fff;
 
     &:hover {
-        color: #9758A6;
+        color: ${props => props.theme.purple};
     }
 
     img {

@@ -61,7 +61,7 @@ export const BackButton = styled(Link)`
     position: fixed;
     margin-top: 10px;
     margin: 20px;
-    background-color: #9758a6;
+    background-color: ${props => props.theme.purple};
     color: #fff;
     font-weight: 200;
     font-size: 20px;
@@ -77,7 +77,7 @@ export const CategoryButton = styled(Link)`
   text-decoration: none;
   cursor: pointer;
   background: none;
-    color: ${props => props.$isActiveCategory ? '#9758a6' : '#9a9a9a'};
+    color: ${props => props.$isActiveCategory ? props => props.theme.purple : '#9a9a9a'};
   font-size: 24px;
   font-weight: 500;
   padding-bottom: 5px;

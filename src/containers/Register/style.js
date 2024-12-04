@@ -53,7 +53,7 @@ export const ContainerRight = styled.div`
 export const Title = styled.h2`
   font-family: "Road Rage", sans-serif;
   font-size: 40;
-  color : #9758A6;
+  color : ${props => props.theme.purple};
 `
 
 export const Form = styled.form`
@@ -95,5 +95,5 @@ export const InputContainer = styled.div`
 
 export const Link = styled(ReactLink)`
   text-decoration: underline;
-  color : #9758A6;
+  color : ${props => props.theme.purple};
 `

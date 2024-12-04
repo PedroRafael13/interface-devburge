@@ -26,7 +26,7 @@ export const ListLink = styled(Link)`
     color: #fff;
     font-size: 23px;
     font-weight: 300;
-    background-color: ${props => props.$isActive ? '#9758A6' : 'transparent'};
+    background-color: ${props => props.$isActive ? props => props.theme.purple : 'transparent'};
 
     &:hover{
         background-color: gray;

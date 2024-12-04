@@ -28,11 +28,11 @@ export const LinkMenu = styled.a`
     font-size: 20px;
     cursor: pointer;
     padding: 5px 10px;
-    background-color: ${props => props.$isActive ? '#9758A6' : 'transparent'};
+    background-color: ${props => props.$isActive ? '${props => props.theme.purple}' : 'transparent'};
     color: ${props => props.$isActive ? '#fff' : '#000'};
     border-radius: 20px;
     
     &:hover{
-        outline: 1px solid #9758A6;
+        outline: 1px solid ${props => props.theme.purple};
     }
 `

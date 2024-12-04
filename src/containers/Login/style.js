@@ -56,7 +56,7 @@ export const Title = styled.h2`
   color : #FFFFFF;
 
   span {
-    color : #9758A6;
+    color : ${props => props.theme.purple};
     font-family: "Road Rage", sans-serif;
   }
 `
@@ -100,5 +100,5 @@ export const InputContainer = styled.div`
 
 export const Link = styled(ReactLink)`
   text-decoration: underline;
-  color : #9758A6;
+  color : ${props => props.theme.purple};
 `
