@@ -4,8 +4,7 @@ import ReactDOM from 'react-dom/client'
 import { Elements } from '@stripe/react-stripe-js';
 import GlobalStyle from './styles/globalStyles'
 import { ToastContainer } from 'react-toastify'
-import { RouterProvider } from 'react-router-dom'
-import { router } from './routes'
+import { Router } from './routes'
 import AppProvider from './hooks'
 import stripePromise from './config/stripeConfig'
 import { ThemeProvider } from 'styled-components';
@@ -16,7 +15,9 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     <ThemeProvider theme={standardTheme}>
       <AppProvider>
         <Elements stripe={stripePromise}>
-          <RouterProvider router={router} />
+          <BrowserRouter>
+            <Router />
+          </BrowserRouter>
         </Elements>
         <GlobalStyle />
         <ToastContainer
