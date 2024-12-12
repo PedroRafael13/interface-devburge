@@ -8,6 +8,7 @@ import Paper from '@mui/material/Paper';
 import { Row } from './row';
 
 import status from './order-status';
+
 import React from 'react'
 import { useEffect, useState } from 'react';
 import { api } from '../../../services/api';
@@ -22,25 +23,27 @@ export const Orders = () => {
 
   useEffect(() => {
     async function loadOrders() {
-      const { data } = await api.get('/order');
+      const { data } = await api.get('order');
       setOrders(data);
       setFilteredOrders(data);
     }
     loadOrders();
   }, []);
 
-  function createData(orders) {
+  function createData(order) {
     return {
-      name: orders.user.name,
-      order: orders._id,
-      date: formatDate(orders.createdAt),
-      status: orders.status,
-      product: orders.products,
+      name: order.user.name,
+      orderId: order._id,
+      date: order.createdAt,
+      status: order.status,
+      products: order.products,
     };
   }
 
   useEffect(() => {
-    const newRows = filteredOrders.map((ord) => createData(ord));
+    const newRows =
+      filteredOrders.map((ord) =>
+        createData(ord));
     setRows(newRows);
   }, [filteredOrders]);
 
@@ -95,7 +98,7 @@ export const Orders = () => {
           <TableBody>
             {rows.map((row) => (
               <Row
-                key={row.order}
+                key={row._id}
                 row={row}
                 setOrders={setOrders}
                 orders={orders}
