@@ -1,34 +1,41 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-export const Container = styled.div`
-    min-height: 100vh;
-    width: 320px;
-    background-color: #363636;
-    padding: 20px;
-`
-
-export const ItemContainer = styled.div`
+export const Container = styled.nav`
     display: flex;
     flex-direction: column;
-    gap: 30px;
+    width: 100%;
+    height : 100vw;
+    background-color: ${(props) => props.theme.Black};
+    
+    img {
+        width: 60%;
+        margin : 40px 0;
+        align-items: center;
+    }
+`
+export const NavLinkContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    width: 100%;
 `
 
-export const ListLink = styled(Link)`
+export const NavLink = styled(Link)`
     display: flex;
     align-items: center;
-    width: 100%;
-    height: 60px;
-    padding: 5px 10px;
-    border-radius: 20px;
-    gap: 20px;
+    gap: 12px;
+    padding: 12px 20px;
     text-decoration: none;
-    color: #fff;
-    font-size: 23px;
-    font-weight: 300;
-    background-color: ${props => props.$isActive ? props => props.theme.purple : 'transparent'};
+    color : ${(props) => props.theme.white} ;
+    background-color: ${(props) => props.$isActive ?
+        props.theme.purple : 'transparent'};
 
     &:hover{
-        background-color: gray;
+        background-color: ${(props) => props.theme.purple};
     }
+`
+
+export const Footer = styled.footer`
+    width: 100%;
+    margin: auto;
 `

@@ -1,23 +1,38 @@
-import { Container, ItemContainer, ListLink } from './styles';
+import { Container, NavLink, NavLinkContainer } from './styles';
 import React from 'react'
+import Logo from '../../assets/Logo.svg'
+import { navLinks } from './navLinks';
+import { SignOut } from '@phosphor-icons/react/dist/ssr';
+import { Footer } from '../Footer';
+import { UserUser } from '../../hooks/UserContext';
+import { useResolvedPath } from 'react-router-dom';
 
-import listLinks from './menu-list';
 
-export const SideMenuAdmin = ({ pathname }) => {
+export const SideMenuAdmin = () => {
+  const { logout } = UserUser()
+  const { pathname } = useResolvedPath()
+
   return (
     <Container>
-      <ItemContainer>
-        {listLinks.map((link) => (
-          <ListLink
+      <img src={Logo} alt="Logo-DevBurger" />
+      <NavLinkContainer>
+        {navLinks.map((link) => (
+          <NavLink
             key={link.id}
-            to={link.link}
-            $isActive={pathname === link.link}
+            to={link.path}
+            $isActive={pathname === link.path}
           >
-            <link.icon />
-            {link.label}
-          </ListLink>
+            {link.icon}
+            <span>{link.label}</span>
+          </NavLink>
         ))}
-      </ItemContainer>
+      </NavLinkContainer>
+      <Footer>
+        <NavLink to='/login' onClick={logout}>
+          <SignOut />
+          <span>Sair</span>
+        </NavLink>
+      </Footer>
     </Container>
   );
 };

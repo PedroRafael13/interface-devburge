@@ -5,109 +5,36 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import { Row } from './row';
+import { Row } from './row'
 
-import status from './order-status';
+const rows = [
+  createData('Frozen yoghurt', 159, 6.0, 24, 4.0, 3.99),
+  createData('Ice cream sandwich', 237, 9.0, 37, 4.3, 4.99),
+  createData('Eclair', 262, 16.0, 24, 6.0, 3.79),
+  createData('Cupcake', 305, 3.7, 67, 4.3, 2.5),
+  createData('Gingerbread', 356, 16.0, 49, 3.9, 1.5),
+];
 
-import React from 'react'
-import { useEffect, useState } from 'react';
-import { api } from '../../../services/api';
-
-import { Container, Menu, LinkMenu } from './style';
-
-export const Orders = () => {
-  const [orders, setOrders] = useState([]);
-  const [filteredOrders, setFilteredOrders] = useState([]);
-  const [activeStatus, setActiveStatus] = useState(1);
-  const [rows, setRows] = useState([]);
-
-  useEffect(() => {
-    async function loadOrders() {
-      const { data } = await api.get('order');
-      setOrders(data);
-      setFilteredOrders(data);
-    }
-    loadOrders();
-  }, []);
-
-  function createData(order) {
-    return {
-      name: order.user.name,
-      orderId: order._id,
-      date: order.createdAt,
-      status: order.status,
-      products: order.products,
-    };
-  }
-
-  useEffect(() => {
-    const newRows =
-      filteredOrders.map((ord) =>
-        createData(ord));
-    setRows(newRows);
-  }, [filteredOrders]);
-
-  useEffect(() => {
-    if (activeStatus == 1) {
-      setFilteredOrders(orders);
-    } else {
-      const statusIndex = status.findIndex((sts) => sts.id === activeStatus);
-      const newFilteredOrders = orders.filter(
-        (order) => order.status === status[statusIndex].value,
-      );
-      setFilteredOrders(newFilteredOrders);
-    }
-  }, [orders]);
-
-  const filterStatus = (status) => {
-    setActiveStatus(status.id);
-    if (status.id == 1) {
-      setFilteredOrders(orders);
-    } else {
-      const newOrders = orders.filter((order) => order.status == status.value);
-      setFilteredOrders(newOrders);
-    }
-  };
-
+export function Order() {
   return (
-    <Container>
-      <Menu>
-        {status &&
-          status.map((status) => (
-            <LinkMenu
-              key={status.id}
-              onClick={() => filterStatus(status)}
-              $isActive={status.id === activeStatus}
-            >
-              {status.label}
-            </LinkMenu>
+    <TableContainer component={Paper}>
+      <Table aria-label="collapsible table">
+        <TableHead>
+          <TableRow>
+            <TableCell />
+            <TableCell>Dessert (100g serving)</TableCell>
+            <TableCell align="right">Calories</TableCell>
+            <TableCell align="right">Fat&nbsp;(g)</TableCell>
+            <TableCell align="right">Carbs&nbsp;(g)</TableCell>
+            <TableCell align="right">Protein&nbsp;(g)</TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {rows.map((row) => (
+            <Row key={row.name} row={row} />
           ))}
-      </Menu>
-
-      <TableContainer component={Paper}>
-        <Table aria-label="collapsible table">
-          <TableHead>
-            <TableRow>
-              <TableCell className="header" />
-              <TableCell className="header">Pedido</TableCell>
-              <TableCell className="header">Nome do Cliente</TableCell>
-              <TableCell className="header">Data do pedido</TableCell>
-              <TableCell className="header">Status</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {rows.map((row) => (
-              <Row
-                key={row._id}
-                row={row}
-                setOrders={setOrders}
-                orders={orders}
-              />
-            ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
-    </Container>
-
+        </TableBody>
+      </Table>
+    </TableContainer>
   );
-};
+}
