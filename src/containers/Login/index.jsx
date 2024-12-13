@@ -43,7 +43,11 @@ export function Login() {
           success: {
             render() {
               setTimeout(() => {
-                navigation('/')
+                if (DevBurgerdata.admin) {
+                  navigation('/admin/pedidos')
+                } else {
+                  navigation('/')
+                }
               }, 2000)
               return "seja Bem-vindo"
             },

@@ -20,21 +20,19 @@ export function Router() {
   return (
     <>
       <Routes>
-      // TODO :    <Routes path='/admin' element={<AdminLayout />}>
-      // TODO :<Router path='/admin/pedidos' element={<Orders />} />
-      // TODO : <Router path='/admin/novo-produto' element={<CreateProducts />} />
-      // TODO : <Router path='/admin/editar-produtor' element={<EditProduct />} />
-      // TODO :<Router path='/admin/produtc' element={<ListProducts />} />
-      // TODO :</Routes>
-
-
-
         <Route path='/' element={<UserLayout />}>
           <Route path='/' element={<Home />} />
           <Route path='/cardapio' element={<Menu />} />
           <Route path='/carrinho' element={<Cart />} />
           <Route path='/checkout' element={<Checkout />} />
           <Route path='/complete' element={<CompletePayment />} />
+        </Route>
+
+        <Route path='/admin' element={<AdminLayout />}>
+          <Route path='/admin/pedidos' element={<Orders />} />
+          <Route path='/admin/novo-produto' element={<CreateProducts />} />
+          <Route path='/admin/editar-produtor' element={<EditProduct />} />
+          <Route path='/admin/produtc' element={<ListProducts />} />
         </Route>
 
         <Route path='/login' element={<Login />} />
