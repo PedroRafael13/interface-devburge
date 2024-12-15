@@ -11,12 +11,12 @@ export function AdminLayout() {
   return isAdmin ?
     (
       <Container>
-        <section>
-          <main>
-            <SideMenuAdmin />
+        <SideMenuAdmin />
+        <main>
+          <secton>
             <Outlet />
-          </main>
-        </section>
+          </secton>
+        </main>
       </Container>
     )
     : (

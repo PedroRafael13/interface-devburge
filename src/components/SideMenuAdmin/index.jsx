@@ -1,9 +1,8 @@
-import { Container, NavLink, NavLinkContainer } from './styles';
+import { Container, NavLink, NavLinkContainer, Footer } from './styles';
 import React from 'react'
 import Logo from '../../assets/Logo.svg'
 import { navLinks } from './navLinks';
 import { SignOut } from '@phosphor-icons/react/dist/ssr';
-import { Footer } from '../Footer';
 import { UserUser } from '../../hooks/UserContext';
 import { useResolvedPath } from 'react-router-dom';
 

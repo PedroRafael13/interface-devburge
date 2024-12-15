@@ -9,12 +9,12 @@ import { Cart } from '../components/Cart';
 import { Checkout } from '../containers/Checkout';
 import { CompletePayment } from '../containers/CompletePayment';
 
-import { Orders } from '../containers/Admin/Orders';
 import { EditProduct } from '../containers/Admin/EditProduct'
 import { ListProducts } from '../containers/Admin/ListProducts'
 import { CreateProducts } from '../containers/Admin/CreateProducts'
 import { UserLayout } from '../layouts/UserLayout';
 import { AdminLayout } from '../layouts/AdminLayout';
+import { Order } from '../containers/Admin/Orders';
 
 export function Router() {
   return (
@@ -29,7 +29,7 @@ export function Router() {
         </Route>
 
         <Route path='/admin' element={<AdminLayout />}>
-          <Route path='/admin/pedidos' element={<Orders />} />
+          <Route path='/admin/pedidos' element={<Order />} />
           <Route path='/admin/novo-produto' element={<CreateProducts />} />
           <Route path='/admin/editar-produtor' element={<EditProduct />} />
           <Route path='/admin/produtc' element={<ListProducts />} />
