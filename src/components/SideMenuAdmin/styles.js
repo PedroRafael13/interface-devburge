@@ -6,7 +6,7 @@ export const Container = styled.nav`
     flex-direction: column;
     width: 100%;
     height : 100vh;
-    background-color: ${(props) => props.theme.Black};
+    background-color: ${(props) => props.theme.black};
     
     img {
         width: 60%;

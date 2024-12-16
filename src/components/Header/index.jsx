@@ -1,77 +1,43 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
-import { UserUser } from '../../hooks/UserContext';
-import { useCart } from '../../hooks/CartContext';
-import {
-  Container,
-  Navigation,
-  Options,
-  HeaderLink,
-  Profile,
-  ProfileName,
-  Logout,
-  Cart,
-  CartLink,
-  CartBadge,
-  AdminConfig,
-} from './style';
-import Logo from '../../assets/Logo.svg';
-import AdminConfigIcon from '../../assets/admin-config.svg';
-import ProfileImage from '../../assets/profile.svg';
-import CartImage from '../../assets/cart.svg';
+import React from "react";
+import { User, ShoppingCartSimple } from "@phosphor-icons/react";
+import { Container, HeaderButton, HeaderLink, LinkContainer, Navigation, Option, Profile, Content } from "./style";
+import { useNavigate, useResolvedPath } from "react-router-dom";
+import { UserUser } from "../../hooks/UserContext";
 
-export const Header = () => {
-  const navigate = useNavigate();
-
-  const { cartProducts } = useCart();
-  const { userInfo: { name, admin }, logout } = UserUser();
-
-  // Função para fazer logout
-  const logoutUser = () => {
-    logout();
-    navigate('/login');
-  };
-
-  // Função para navegar até o carrinho
-  const userCart = () => {
-    navigate('/carrinho');
-  };
-
-  // Função para navegação de administração (caso o usuário seja admin)
-  const navigateAdminConfig = () => {
-    navigate('/pedidos');
-  };
-
+export function Header() {
+  const navigate = useNavigate()
+  const { logout, userInfo } = UserUser()
+  const { pathname } = useResolvedPath()
+  function logoutUser() {
+    logout()
+    navigate("/login")
+  }
   return (
     <Container>
-      <Navigation>
-        <div>
-          <HeaderLink to="/">Home</HeaderLink>
-          <HeaderLink to="/cardapio?categoria=0">Cardápio</HeaderLink>
-        </div>
-      </Navigation>
-      <Options>
-        <Profile>
-          <img src={ProfileImage} alt="profile" />
+      <Content>
+        <Navigation>
           <div>
-            <p>
-              Olá, <ProfileName>{name}</ProfileName>
-            </p>
-            <Logout onClick={logoutUser}>Sair</Logout>
+            <HeaderLink to="/" $isActive={pathname === '/'}>Home</HeaderLink>
+            <hr></hr>
+            <HeaderLink to="/cardapio" $isActive={pathname === '/cardapio'}>Cardápio</HeaderLink>
           </div>
-        </Profile>
-        <Cart>
-          <img src={CartImage} alt="carrinho" />
-          <CartBadge>{cartProducts.length}</CartBadge>
-          <CartLink onClick={userCart}>Carrinho</CartLink>
-        </Cart>
-        {admin && (
-          <AdminConfig onClick={navigateAdminConfig}>
-            <img src={AdminConfigIcon} alt="Admin Config" />
-            Administração
-          </AdminConfig>
-        )}
-      </Options>
+        </Navigation>
+        <Option>
+          <Profile>
+            <User color="#333" size={24} />
+            <div>
+              <p>
+                Olá,<span>{userInfo.name}</span>
+              </p>
+              <HeaderButton onClick={logoutUser}>Sair</HeaderButton>
+            </div>
+          </Profile>
+          <LinkContainer>
+            <ShoppingCartSimple color="#333" size={24} />
+            <HeaderLink to='/carrinho' >Carrinho</HeaderLink>
+          </LinkContainer>
+        </Option>
+      </Content>
     </Container>
-  );
-};
+  )
+}
