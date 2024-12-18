@@ -14,7 +14,7 @@ import { ListProducts } from '../containers/Admin/ListProducts'
 import { CreateProducts } from '../containers/Admin/CreateProducts'
 import { UserLayout } from '../layouts/UserLayout';
 import { AdminLayout } from '../layouts/AdminLayout';
-import { Order } from '../containers/Admin/Orders';
+import { Orders } from '../containers/Admin/Orders';
 
 export function Router() {
   return (
@@ -29,7 +29,7 @@ export function Router() {
         </Route>
 
         <Route path='/admin' element={<AdminLayout />}>
-          <Route path='/admin/pedidos' element={<Order />} />
+          <Route path='/admin/pedidos' element={<Orders />} />
           <Route path='/admin/novo-produto' element={<CreateProducts />} />
           <Route path='/admin/editar-produtor' element={<EditProduct />} />
           <Route path='/admin/produtc' element={<ListProducts />} />

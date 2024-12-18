@@ -1,3 +1,4 @@
+import * as React from 'react';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -5,12 +6,11 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import { api } from '../../../services/api'
-import { Row } from './row'
+import { Row } from './row';
 import { useEffect, useState } from 'react';
-import React from 'react';
+import { api } from '../../../services/api';
 
-export function Order() {
+export function Orders() {
   const [orders, setOrders] = useState([])
   const [rows, setRows] = useState([])
 
@@ -18,6 +18,7 @@ export function Order() {
     async function loadOrders() {
       const { data } = await api.get('order')
       setOrders(data)
+      console.log(data)
     }
 
     loadOrders()
@@ -52,7 +53,7 @@ export function Order() {
         </TableHead>
         <TableBody>
           {rows.map((row) => (
-            <Row key={row.name} row={row} />
+            <Row key={row._id} row={row} />
           ))}
         </TableBody>
       </Table>
