@@ -65,8 +65,8 @@ export function CheckoutForm() {
             navigate(
               `/complete?payment_intent_client_secret=${paymentIntent.client_secret}`,
             );
+            clearCart()
           }, 2000);
-          clearCart()
           toast.success('Pedido realizado com sucesso!');
         } else if (response.status === 409) {
           toast.error('Falha ao realizar seu pedido');

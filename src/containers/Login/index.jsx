@@ -43,7 +43,7 @@ export function Login() {
           success: {
             render() {
               setTimeout(() => {
-                if (DevBurgerdata.admin) {
+                if (userData.admin) {
                   navigation('/admin/pedidos')
                 } else {
                   navigation('/')
