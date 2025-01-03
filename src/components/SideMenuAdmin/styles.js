@@ -37,5 +37,5 @@ export const NavLink = styled(Link)`
 
 export const Footer = styled.footer`
     width: 100%;
-    margin: auto;
+    margin-top: auto;
 `

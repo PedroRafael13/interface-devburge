@@ -1,4 +1,4 @@
-import { Container, NavLink, NavLinkContainer, Footer } from './styles';
+import { Container, Footer, NavLink, NavLinkContainer } from './styles';
 import React from 'react'
 import Logo from '../../assets/Logo.svg'
 import { navLinks } from './navLinks';

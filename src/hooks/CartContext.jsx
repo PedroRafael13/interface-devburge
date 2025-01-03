@@ -65,12 +65,19 @@ export const CartProvider = ({ children }) => {
   }
 
   useEffect(() => {
-    const clientInfoData = localStorage.getItem('devBurger:dataInfo')
+    const clientInfoData = localStorage.getItem('devBurger:dataInfo');
 
     if (clientInfoData) {
-      setCartProducts(JSON.parse(clientInfoData))
+      try {
+        setCartProducts(JSON.parse(clientInfoData));
+      } catch (error) {
+        console.error("Erro ao analisar os dados do localStorage:", error);
+        setCartProducts([]);
+      }
+    } else {
+      setCartProducts([]);
     }
-  }, [])
+  }, []);
 
 
   return (

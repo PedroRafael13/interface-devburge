@@ -3,8 +3,17 @@ import styled from 'styled-components'
 import { Button } from '../../../components/Button';
 
 export const Container = styled.div`
+   display: flex
+;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
     width: 100%;
-    height: 100%;
+    height: 100vh;
+    background-color: #f0f0f0;
+    overflow-y: auto;
+
 
     form{
         display: flex;
@@ -42,6 +51,7 @@ export const LabelUpload = styled.label`
     border-radius: 10px;
     padding: 10px;
 
+    
     input{
         opacity: 0;
         width: 1px;
