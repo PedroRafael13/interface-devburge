@@ -1,8 +1,4 @@
-# React + Vite
+<H1>Interface DevBurge🍔</H1>
+<p>Este projeto é um site Fullstack desenvolvido para uma lanchonete, com foco em funcionalidades front-end modernas. A aplicação permite que os usuários explorem o cardápio, personalizem pedidos, visualizem preços atualizados e finalizem suas compras de maneira intuitiva. O design responsivo garante uma experiência otimizada em dispositivos móveis e desktops.</p>
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+<h2>Tecnologias Usadas</h2>
