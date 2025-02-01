@@ -35,12 +35,21 @@ Este projeto é um site Fullstack desenvolvido para uma lanchonete, com foco em 
 - Eslint
 - Prettier
 
-## Layout
+## Cadastro
 
-![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
+![App Screenshot](src/assets/Doc/Register.png)
 
+                                                                                    ## Produto
 
+![App Screenshot](src/assets/Doc/produtoOne.png)      
 
+## Criação de Produto
+
+![App Screenshot](src/assets/Doc/produtoTwo.png)
+
+## Tela de Carrinho
+
+![App Screenshot](src/assets/Doc/Captura%20de%20tela%202025-02-01%20124225.png)
 
 ## Instalação
 
